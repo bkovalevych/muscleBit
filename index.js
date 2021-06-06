@@ -56,7 +56,7 @@ server.get('/set_value', (req, res) => {
         res.send("Query is not ok")
         console.error('[set value][query]')
     } else {
-        let raw_values = res.query["data"].split("_");
+        let raw_values = req.query["data"].split("_");
         let result = []
         for (let raw_val of raw_values) {
             let val = parseInt(raw_val);
