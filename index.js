@@ -68,6 +68,8 @@ server.get('/set_value', (req, res) => {
             io.emit("arm", result)
             console.log(`[data set] ${result}`);
             res.send(`[data set] ${result}`);
+        } else {
+            res.send(`[error query] ${result}`);
         }
     }
 })
