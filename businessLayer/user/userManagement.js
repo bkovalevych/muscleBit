@@ -26,7 +26,7 @@ objectModule.addUser = (req, res, next) => {
         res.json(finalUser);
     }).catch(err => {
         addLog(err.toString(), 'create User');
-        res.status(500).json({errors: err});
+        res.status(400).json({errors: err});
     })
 };
 

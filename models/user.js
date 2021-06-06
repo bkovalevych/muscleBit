@@ -19,9 +19,9 @@ const UserSchema = new Schema({
     publicKey: String,
 
     notifications: [{
-    text: String,
-    time: {type: Date, default: Date.now}
-}]
+        text: String,
+        time: {type: Date, default: Date.now}
+    }]
 });
 
 module.exports = User = mongoose.model('User', UserSchema);
