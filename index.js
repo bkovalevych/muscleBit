@@ -48,6 +48,29 @@ server.get('/play/:id', (req, res) => {
     })
 
 })
+server.get('/set_value', (req, res) => {
+    if (!io) {
+        res.send("Io is not ok")
+        console.error("[set value][io error]")
+    } else if (!req.query) {
+        res.send("Query is not ok")
+        console.error('[set value][query]')
+    } else {
+        let raw_values = res.query["data"].split("_");
+        let result = []
+        for (let raw_val of raw_values) {
+            let val = parseInt(raw_val);
+            if (!isNaN(val)) {
+                result.push(val)
+            }
+        }
+        if (result.length > 0) {
+            io.emit("arm", result)
+            console.log(`[data set] ${result}`);
+            res.send(`[data set] ${result}`);
+        }
+    }
+})
 server.use('/user', require('./api/user'));
 server.use('/admin', require('./api/admin'));
 server.use('/data', require('./api/data'));
